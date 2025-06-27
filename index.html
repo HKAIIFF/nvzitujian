@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《東京女子圖鑑》AI原生電影 - NFT平台</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff69b4;
+            --secondary: #8b0000;
+            --accent: #ff1493;
+            --gold: #ffd700;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 105, 180, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.1) 0%, transparent 20%);
+        }
+        
+        .logo-font {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 20, 147, 0.3); }
+            100% { text-shadow: 0 0 25px rgba(255, 20, 147, 0.6), 0 0 35px rgba(255, 215, 0, 0.4); }
+        }
+        
+        .logo-sub {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: -10px;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .accent-bg {
+            background: rgba(255, 20, 147, 0.1);
+            border: 1px solid rgba(255, 20, 147, 0.2);
+        }
+        
+        .card {
+            background-color: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 20, 147, 0.2);
+            border-color: rgba(255, 20, 147, 0.3);
+        }
+        
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 20, 147, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 20, 147, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            animation: bgPan 30s infinite linear;
+        }
+        
+        @keyframes bgPan {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-slide-right {
+            animation: slideRight 0.8s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideRight {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .progress-bar {
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--gold));
+            border-radius: 9999px;
+            height: 8px;
+        }
+        
+        .cyber-border {
+            position: relative;
+        }
+        
+        .cyber-border:after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, transparent 30%, var(--accent) 45%, var(--gold) 55%, transparent 70%);
+            background-size: 200% 200%;
+            animation: borderGlow 5s linear infinite;
+            z-index: -1;
+            border-radius: 20px;
+        }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .ai-element {
+            position: absolute;
+            background-color: rgba(255, 105, 180, 0.1);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent);
+            z-index: 3;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.1);
+        }
+        
+        .data-stream {
+            position: absolute;
+            height: 100px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--gold), transparent);
+            z-index: 0;
+            animation: dataStream 2s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes dataStream {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+        .nft-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .nft-img {
+            transform: scale(1.05);
+        }
+        
+        .ai-tech-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .token-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .token-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 20, 147, 0.25);
+        }
+        
+        .golden-lotus-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .ai-chip {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 20, 147, 0.3);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin: 0 5px 5px 0;
+        }
+        
+        .stats-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 16px;
+            background: rgba(26, 32, 44, 0.5);
+            border: 1px solid rgba(255, 20, 147, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(26, 32, 44, 0.7);
+        }
+        
+        .stats-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .stats-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nft-card-hover {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .nft-card:hover .nft-card-hover {
+            transform: translateY(0);
+        }
+        
+        .filter-pill {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        
+        .filter-pill.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .filter-pill:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .token-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: #111;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .nft-detail-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .nft-detail-container {
+                flex-direction: row;
+            }
+        }
+        
+        .nft-detail-image {
+            flex: 1;
+            min-height: 400px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nft-detail-info {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+        
+        .recognition-card {
+            background: rgba(26, 32, 44, 0.7);
+            border-radius: 16px;
+            padding: 25px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .recognition-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 20, 147, 0.1);
+            border: 1px solid rgba(255, 20, 147, 0.2);
+        }
+        
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .market-table th, .market-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .market-table th {
+            background: rgba(255, 20, 147, 0.1);
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .market-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .market-table tr:hover {
+            background: rgba(255, 20, 147, 0.05);
+        }
+        
+        .login-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .login-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 280px;
+            background: rgba(26, 32, 44, 0.95);
+            border: 1px solid rgba(255, 20, 147, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 100;
+        }
+        
+        .login-container:hover .login-dropdown {
+            display: block;
+        }
+        
+        .login-dropdown h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .login-option {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .login-option:hover {
+            background: rgba(255, 20, 147, 0.1);
+        }
+        
+        .login-option i {
+            font-size: 1.25rem;
+            margin-right: 12px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .login-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 15px 0;
+        }
+        
+        .wallet-option {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 20, 147, 0.2);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        .timeline-item:last-child:before {
+            bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .roadmap-card {
+            background: rgba(26, 32, 44, 0.8);
+            border: 1px solid rgba(255, 20, 147, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.1);
+        }
+
+        .footer {
+            background-color: rgba(16, 16, 16, 0.95);
+            border-top: 1px solid rgba(255, 20, 147, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .ai-tech-img {
+                height: 300px;
+            }
+            
+            .logo-font {
+                font-size: 1.8rem;
+            }
+            
+            .hero-bg {
+                animation: none;
+            }
+            
+            .hero {
+                min-height: 50vh;
+            }
+            
+            .section-title:after {
+                width: 40px;
+                bottom: -8px;
+            }
+            
+            .market-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .login-dropdown {
+                width: 240px;
+                right: -20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 40vh;
+            }
+            
+            .logo-font {
+                font-size: 1.5rem;
+            }
+            
+            .logo-sub {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AI Elements -->
+    <div class="ai-element" style="top: 120px; left: 10%;">
+        NFT_ID: TG-001 <br>
+        狀態: 生成中 <br>
+        // AI生成東京女子圖鑑NFT
+    </div>
+    
+    <div class="ai-element" style="bottom: 150px; right: 15%;">
+        區塊高度: #998877 <br>
+        哈希: 0x8A2B4...F8D <br>
+        // 區塊鏈認證
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="golden-lotus-logo">
+                <div class="logo-font">東京女子圖鑑</div>
+                <div class="logo-sub">AI原生電影宇宙</div>
+            </a>
+            <div class="hidden md:flex space-x-8 desktop-nav">
+                <a href="#about" class="hover:text-pink-400 transition">關於項目</a>
+                <a href="#global" class="hover:text-pink-400 transition">全球價值</a>
+                <a href="#nft" class="hover:text-pink-400 transition">NFT系列</a>
+                <a href="#technology" class="hover:text-pink-400 transition">AI技術</a>
+                <a href="#collections" class="hover:text-pink-400 transition">精選收藏</a>
+                <a href="#experience" class="hover:text-pink-400 transition">觀影體驗</a>
+                <a href="#roadmap" class="hover:text-pink-400 transition">發展路線</a>
+                <a href="#community" class="hover:text-pink-400 transition">社群</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Login Container -->
+                <div class="login-container relative">
+                    <a href="#login" class="btn-primary px-6 py-2 rounded-full text-sm">登入</a>
+                    <div class="login-dropdown">
+                        <h3 class="font-bold text-lg mb-4">登入東京女子圖鑑宇宙</h3>
+                        
+                        <div class="login-option" data-login="google">
+                            <i class="fab fa-google text-red-500"></i>
+                            <span>使用Google登入</span>
+                        </div>
+                        
+                        <div class="login-option" data-login="facebook">
+                            <i class="fab fa-facebook text-blue-600"></i>
+                            <span>使用Facebook登入</span>
+                        </div>
+                        
+                        <div class="login-option" data-login="apple">
+                            <i class="fab fa-apple"></i>
+                            <span>使用Apple登入</span>
+                        </div>
+                        
+                        <div class="login-divider"></div>
+                        
+                        <div class="login-option wallet-option" data-login="metamask">
+                            <i class="fas fa-wallet text-yellow-400"></i>
+                            <span>連接MetaMask錢包</span>
+                        </div>
+                        
+                        <div class="login-option wallet-option" data-login="walletconnect">
+                            <i class="fas fa-plug text-blue-300"></i>
+                            <span>連接WalletConnect</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="md:hidden text-white mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <div class="mt-12 flex flex-col space-y-6">
+            <a href="#about" class="text-xl hover:text-pink-400 transition">關於項目</a>
+            <a href="#global" class="text-xl hover:text-pink-400 transition">全球價值</a>
+            <a href="#nft" class="text-xl hover:text-pink-400 transition">NFT系列</a>
+            <a href="#technology" class="text-xl hover:text-pink-400 transition">AI技術</a>
+            <a href="#collections" class="text-xl hover:text-pink-400 transition">精選收藏</a>
+            <a href="#experience" class="text-xl hover:text-pink-400 transition">觀影體驗</a>
+            <a href="#roadmap" class="text-xl hover:text-pink-400 transition">發展路線</a>
+            <a href="#community" class="text-xl hover:text-pink-400 transition">社群</a>
+            
+            <div class="pt-6 border-t border-gray-700">
+                <button class="btn-primary w-full py-3 rounded-lg font-medium text-center mb-4">
+                    登入
+                </button>
+                <button class="btn-secondary w-full py-3 rounded-lg font-medium text-center">
+                    連接錢包
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container mx-auto px-4 hero-content">
+            <div class="max-w-3xl animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">《東京女子圖鑑》AI原生電影宇宙</h1>
+                <p class="text-xl text-gray-300 mb-8">
+                    全球首部完全由AI技術製作的都市女性成長題材電影，打造創新的NFT觀影生態系統，收藏獨一無二的數位文化資產。
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#nft" class="btn-primary px-8 py-3 rounded-full font-medium text-center">
+                        探索NFT系列
+                    </a>
+                    <a href="#global" class="btn-secondary px-8 py-3 rounded-full font-medium text-center">
+                        全球價值分析
+                    </a>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="stats-card">
+                        <i class="fas fa-female"></i>
+                        <div class="number">120分鐘</div>
+                        <div class="text-sm">完整電影</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-cubes"></i>
+                        <div class="number">200,000</div>
+                        <div class="text-sm">限量NFT</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-globe-asia"></i>
+                        <div class="number">168+</div>
+                        <div class="text-sm">國家地區</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-brain"></i>
+                        <div class="number">AI原生</div>
+                        <div class="text-sm">全球首創</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16" id="about">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">重塑都市女性成長故事</h2>
+                <p class="text-xl text-gray-300">
+                    《東京女子圖鑑》是現象級都市女性題材作品，深刻反映現代都市女性的真實生活狀態和成長歷程。
+                    我們運用最先進的生成式AI與區塊鏈技術，為這部具有巨大影響力的作品注入數位生命。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6 animate-slide-up">
+                    <div class="text-pink-400 text-4xl mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">文化傳承</h3>
+                    <p class="text-gray-400">
+                        讓優秀的都市女性題材內容通過AI技術跨越語言和文化障礙，以更具想像力的方式觸達全球觀眾。
+                    </p>
+                </div>
+                
+                <div class="card p-6 animate-slide-up">
+                    <div class="text-pink-400 text-4xl mb-4">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">技術創新</h3>
+                    <p class="text-gray-400">
+                        開創AI原生電影製作的新範式，全流程依靠人工智慧完成，推動AI在藝術創作領域的極限應用。
+                    </p>
+                </div>
+                
+                <div class="card p-6 animate-slide-up">
+                    <div class="text-pink-400 text-4xl mb-4">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">全球影響</h3>
+                    <p class="text-gray-400">
+                        通過多語言製作和文化在地化，向世界展示現代都市女性文化的深刻內涵和時代價值。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Recognition Section -->
+    <section class="py-16 bg-gray-900" id="global">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">全球價值與文化影響力</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    《東京女子圖鑑》作為現象級都市女性IP，擁有深厚的學術基礎與廣泛的全球影響力，為本項目提供強大的文化背書與市場潛力。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="recognition-card">
+                    <div class="text-pink-400 text-5xl mb-4">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">學術研究</h3>
+                    <p class="text-gray-400 mb-4">
+                        全球已有超過500篇學術論文研究《東京女子圖鑑》現象，被翻譯成15種語言在全球發行。
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>東京大學、早稻田大學等頂尖學府均設有專門研究課程</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>被視為研究都市女性文化和現代社會的經典文本</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="recognition-card">
+                    <div class="text-pink-400 text-5xl mb-4">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">影視改編</h3>
+                    <p class="text-gray-400 mb-4">
+                        基於原作改編的影視作品在各國都有重要的文化影響，包括中國的《北京女子圖鑑》等。
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>在網路上引發了對都市女性生活的廣泛探討</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>深刻影響了都市女性題材創作的發展方向</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="recognition-card">
+                    <div class="text-pink-400 text-5xl mb-4">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">全球認知度</h3>
+                    <p class="text-gray-400 mb-4">
+                        《東京女子圖鑑》在全球範圍內擁有廣泛的文化認知基礎：
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>在日本都市女性群體中認知度達92%</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>被聯合國婦女署評為「現代女性文化經典」</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>亞洲都市女性社區家喻戶曉的文化符號</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card p-6">
+                <h3 class="text-2xl font-bold mb-6 text-center">全球文化認知度分析</h3>
+                <div class="overflow-x-auto">
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>地區</th>
+                                <th>知識分子認知度</th>
+                                <th>大眾認知度</th>
+                                <th>年度文化產品產值</th>
+                                <th>潛在用戶基數</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>日本</td>
+                                <td>92%</td>
+                                <td>68%</td>
+                                <td>8億日元</td>
+                                <td>2,500萬人</td>
+                            </tr>
+                            <tr>
+                                <td>韓國</td>
+                                <td>85%</td>
+                                <td>55%</td>
+                                <td>15億韓元</td>
+                                <td>1,800萬人</td>
+                            </tr>
+                            <tr>
+                                <td>中國大陸</td>
+                                <td>78%</td>
+                                <td>45%</td>
+                                <td>25億人民幣</td>
+                                <td>2.5億人</td>
+                            </tr>
+                            <tr>
+                                <td>台港澳</td>
+                                <td>88%</td>
+                                <td>62%</td>
+                                <td>3億新台幣</td>
+                                <td>800萬人</td>
+                            </tr>
+                            <tr>
+                                <td>美國</td>
+                                <td>45%</td>
+                                <td>15%</td>
+                                <td>8,000萬美元</td>
+                                <td>1,500萬人</td>
+                            </tr>
+                            <tr>
+                                <td>歐洲</td>
+                                <td>35%</td>
+                                <td>12%</td>
+                                <td>5,000萬歐元</td>
+                                <td>1,000萬人</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NFT Collections Section -->
+    <section class="py-16" id="nft">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">NFT收藏系列</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    收藏獨一無二的《東京女子圖鑑》數位文化資產，每件NFT都是您在AI電影宇宙中的專屬通行證。
+                </p>
+            </div>
+            
+            <!-- Filter Pills -->
+            <div class="flex justify-center flex-wrap gap-4 mb-12">
+                <div class="filter-pill active" data-filter="all">全部系列</div>
+                <div class="filter-pill" data-filter="aya">綾NFT</div>
+                <div class="filter-pill" data-filter="growth">都市女性成長</div>
+                <div class="filter-pill" data-filter="scene">都市生活場景</div>
+                <div class="filter-pill" data-filter="career">職業NFT</div>
+                <div class="filter-pill" data-filter="dream">都市夢想</div>
+                <div class="filter-pill" data-filter="ticket">觀影通行證</div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 綾NFT -->
+                <div class="card overflow-hidden nft-item token-card" data-id="1" data-category="aya">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-crown text-5xl mb-2 text-pink-400"></i>
+                            <div>綾NFT</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">創始贊助人層級</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">綾NFT</h3>
+                            <span class="text-sm text-gray-400">限量800枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            動態生成的60-120秒視頻藝術品，融合都市美學與現代數位藝術，擁有DAO核心投票權。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">¥15,999</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 初入都市 - 夢想啟航 -->
+                <div class="card overflow-hidden nft-item token-card" data-id="2" data-category="growth">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-rocket text-5xl mb-2 text-green-400"></i>
+                            <div>初入都市</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">成長主題</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">初入都市 - 夢想啟航</h3>
+                            <span class="text-sm text-gray-400">限量2,000枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            3D互動初入職場場景，展現青澀與勇敢，都市新人美學代表，希望與迷茫交織。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">¥12,999</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 職場奮鬥 - 拼搏歲月 -->
+                <div class="card overflow-hidden nft-item token-card" data-id="3" data-category="growth">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-briefcase text-5xl mb-2 text-blue-400"></i>
+                            <div>職場奮鬥</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">成長主題</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">職場奮鬥 - 拼搏歲月</h3>
+                            <span class="text-sm text-gray-400">限量2,000枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            工作場景動態展示，加班熬夜的真實表現，奮鬥精神主題表達。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">¥9,999</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 愛情迷惘 - 情感歷程 -->
+                <div class="card overflow-hidden nft-item token-card" data-id="4" data-category="growth">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-heart text-5xl mb-2 text-red-400"></i>
+                            <div>愛情迷惘</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">成長主題</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">愛情迷惘 - 情感歷程</h3>
+                            <span class="text-sm text-gray-400">限量2,000枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            戀愛場景3D展示技術，情感波動藝術還原，都市愛情的複雜表現。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">¥8,999</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 澀谷生活場景 -->
+                <div class="card overflow-hidden nft-item token-card" data-id="5" data-category="scene">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-city text-5xl mb-2 text-purple-400"></i>
+                            <div>澀谷生活</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">都市場景</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">澀谷生活場景</h3>
+                            <span class="text-sm text-gray-400">限量5,000枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            東京最繁華地區的生活場景還原，展現都市女性的日常生活狀態。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">¥2,999</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 時尚品牌經理 -->
+                <div class="card overflow-hidden nft-item token-card" data-id="6" data-category="career">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-user-tie text-5xl mb-2 text-indigo-400"></i>
+                            <div>時尚品牌經理</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">職業NFT</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">時尚品牌經理</h3>
+                            <span class="text-sm text-gray-400">限量3,000枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            展現都市女性的職業成就，時尚行業的精英形象，權力與地位的象徵。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">¥1,299</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 都市夢想NFT -->
+                <div class="card overflow-hidden nft-item token-card" data-id="7" data-category="dream">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-star text-5xl mb-2 text-yellow-400"></i>
+                            <div>都市夢想NFT</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">合成系列</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">都市夢想NFT</h3>
+                            <span class="text-sm text-gray-400">理論上限45,000枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            由成長主題NFT + 生活場景NFT合成，每個都是獨一無二的30-60秒AI電影短片。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">合成獲得</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 觀影通行證NFT -->
+                <div class="card overflow-hidden nft-item token-card" data-id="8" data-category="ticket">
+                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-ticket-alt text-5xl mb-2 text-orange-400"></i>
+                            <div>觀影通行證NFT</div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">大眾層級</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold">觀影通行證NFT</h3>
+                            <span class="text-sm text-gray-400">限量114,200枚</span>
+                        </div>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            120分鐘AI電影一次性觀看權，消耗型NFT，使用即消耗，未來續集優先購買權。
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-pink-400">¥99</span>
+                            <button class="btn-primary px-4 py-2 text-sm view-detail">
+                                查看詳情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-center">NFT詳細分層說明</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="bg-pink-600 text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-crown text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">綾NFT（創始贊助人層級）</h4>
+                                <p class="text-gray-400">
+                                    作為創始贊助人層級，持有者可參與DAO核心治理，擁有NFT形象完整商業使用權，
+                                    並在電影片頭獲得署名權。每個綾NFT都是動態生成的藝術品。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 rounded-lg p-4">
+                            <h5 class="font-bold mb-2">持有者權益：</h5>
+                            <ul class="space-y-2 text-gray-400">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                    <span>參與項目重大決策投票，包括續集製作、IP授權等</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                    <span>與主創團隊的私人交流會和獨家觀影體驗</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                    <span>專屬虛擬觀影廳，可邀請最多20人同時觀看</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="bg-blue-600 text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-chart-line text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">都市女性成長主題NFT</h4>
+                                <p class="text-gray-400">
+                                    涵蓋從初入都市到成熟蛻變的8個成長階段，每個階段都有獨特的藝術表現和互動功能。
+                                    支援角色視角觀影和AI對話系統。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-800 rounded-lg p-3">
+                                <h5 class="font-bold mb-1">成長階段</h5>
+                                <ul class="text-sm text-gray-400">
+                                    <li>• 初入都市 - 夢想啟航</li>
+                                    <li>• 職場奮鬥 - 拼搏歲月</li>
+                                    <li>• 愛情迷惘 - 情感歷程</li>
+                                    <li>• 成熟蛻變 - 自我實現</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-3">
+                                <h5 class="font-bold mb-1">特色功能</h5>
+                                <ul class="text-sm text-gray-400">
+                                    <li>• 與角色AI進行深度對話</li>
+                                    <li>• 以角色視角觀看電影</li>
+                                    <li>• 加入角色專屬粉絲社群</li>
+                                    <li>• 參與都市夢想NFT合成</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="py-16 bg-gray-900" id="technology">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">AI原生電影技術</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    從劇本理解到視覺生成，全流程依靠人工智慧技術完成，開創電影製作的全新範式。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-4">什麼是AI原生電影？</h3>
+                        <p class="text-gray-400">
+                            AI原生電影是指從劇本理解、視覺生成、角色塑造、場景構建、配音配樂到後期製作，全流程主要依靠人工智慧技術完成的電影作品。
+                            它以AI為核心創作引擎，人類藝術家則扮演著「靈魂注入者」和「審美把關人」的角色。
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="text-pink-400 text-xl mr-4">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-2">視覺生成技術</h4>
+                                <p class="text-gray-400">
+                                    使用Stable Diffusion XL、Midjourney V6和DALL-E 3生成高質量現代都市風格的靜態畫面，
+                                    並針對「都市女性美學」與「現代生活」風格訓練專屬模型。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-pink-400 text-xl mr-4">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-2">視頻生成與動畫</h4>
+                                <p class="text-gray-400">
+                                    使用Runway ML Gen-2和Pika Labs實現靜態圖像到動態視頻的轉換，
+                                    並針對現代服飾、都市建築動態效果等特殊場景開發專有算法。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-pink-400 text-xl mr-4">
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-2">語音與音頻</h4>
+                                <p class="text-gray-400">
+                                    使用ElevenLabs生成高質量的多語言配音，
+                                    並合成現代都市音效與背景音樂，營造真實的都市生活氛圍。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-gray-800 w-full h-96 rounded-xl flex items-center justify-center">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-brain text-7xl mb-4"></i>
+                            <div class="text-xl">AI技術展示</div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-pink-600 text-white p-4 rounded-xl">
+                        <div class="text-sm">無限創意</div>
+                        <div class="text-xl font-bold">完美呈現都市世界</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <div class="text-pink-400 text-4xl mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">想像力無限</h3>
+                    <p class="text-gray-400">
+                        傳統電影難以呈現的都市場景、現代建築和情感意境，AI可以輕鬆實現，完美還原都市女性生活的真實感受。
+                    </p>
+                </div>
+                
+                <div class="card p-6">
+                    <div class="text-pink-400 text-4xl mb-4">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">藝術創作效率</h3>
+                    <p class="text-gray-400">
+                        大幅壓縮傳統電影製作週期，讓藝術家能夠更專注於核心創意表達和文化內涵的呈現。
+                    </p>
+                </div>
+                
+                <div class="card p-6">
+                    <div class="text-pink-400 text-4xl mb-4">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">多語言全球化</h3>
+                    <p class="text-gray-400">
+                        一次核心製作，即可同步輸出多種語言版本，並根據不同地區的文化審美微調視覺風格和配樂。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Viewing Experience Section -->
+    <section class="py-16" id="experience">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">觀影體驗創新</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    基於NFT的代幣門控觀影系統，提供個性化的沉浸式觀影體驗，重新定義電影觀看方式。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">多重觀影模式</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="card p-6">
+                            <div class="flex items-start">
+                                <div class="text-pink-400 text-2xl mr-4 mt-1">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-2">標準觀影模式</h4>
+                                    <p class="text-gray-400">
+                                        8K超高清畫質，7.1環繞聲，章節制結構，支援章節跳轉，多語言字幕和配音選擇。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-6">
+                            <div class="flex items-start">
+                                <div class="text-pink-400 text-2xl mr-4 mt-1">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-2">角色視角模式</h4>
+                                    <p class="text-gray-400">
+                                        成長主題NFT持有者專享，以持有的成長階段視角體驗劇情，AI即時生成角色內心獨白。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-6">
+                            <div class="flex items-start">
+                                <div class="text-pink-400 text-2xl mr-4 mt-1">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-2">沉浸式VR模式</h4>
+                                    <p class="text-gray-400">
+                                        VR頭顯支援，360度沉浸體驗，可在都市場景中自由行走，與AI角色進行即時互動。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-gray-800 w-full h-96 rounded-xl flex items-center justify-center">
+                        <div class="text-gray-400 text-center">
+                            <i class="fas fa-tv text-7xl mb-4"></i>
+                            <div class="text-xl">沉浸式觀影體驗</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card p-8">
+                <h3 class="text-2xl font-bold mb-6 text-center">觀影權的稀缺性價值</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-400 mb-2">1,200萬</div>
+                        <div class="text-gray-400">全球潛在觀影用戶</div>
+                        <div class="text-sm text-gray-500 mt-2">基於《東京女子圖鑑》全球認知度</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-400 mb-2">200,000</div>
+                        <div class="text-gray-400">NFT總供應量</div>
+                        <div class="text-sm text-gray-500 mt-2">提供觀影權的NFT總數</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-400 mb-2">1:60</div>
+                        <div class="text-gray-400">供需比例</div>
+                        <div class="text-sm text-gray-500 mt-2">60個潛在用戶競爭1個觀影權</div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-gray-800 p-6 rounded-lg">
+                    <h4 class="text-xl font-bold mb-4">價值增長機制</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-ticket-alt text-pink-400 mt-1 mr-3"></i>
+                                <span class="text-gray-400">基礎價值：觀影權本身價值 99-15,999元</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chart-line text-pink-400 mt-1 mr-3"></i>
+                                <span class="text-gray-400">稀缺性溢價：供應有限，需求增長帶來價格上漲</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-medal text-pink-400 mt-1 mr-3"></i>
+                                <span class="text-gray-400">收藏價值：首部AI原生都市女性題材電影的歷史意義</span>
+                            </li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-users text-pink-400 mt-1 mr-3"></i>
+                                <span class="text-gray-400">社群價值：高質量文化愛好者社區的準入權</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-gift text-pink-400 mt-1 mr-3"></i>
+                                <span class="text-gray-400">未來權益：續集優先觀看、衍生品優先購買等</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-robot text-pink-400 mt-1 mr-3"></i>
+                                <span class="text-gray-400">AI互動：與角色AI對話，個性化內容生成</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Roadmap Section -->
+    <section class="py-16 bg-gray-900" id="roadmap">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">發展路線圖</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    從技術開發到全球發行，詳細展示項目各個階段的發展計劃和關鍵里程碑。
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- 第一階段：基礎建設期 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i class="fas fa-rocket text-xs"></i>
+                    </div>
+                    <div class="roadmap-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-4">
+                                第一階段
+                            </div>
+                            <h3 class="text-xl font-bold">基礎建設期（2025年10月-12月）</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="font-bold text-pink-400 mb-2">10月份 - 項目啟動</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• 核心團隊組建完成</li>
+                                    <li>• 技術架構設計完成</li>
+                                    <li>• AI模型訓練開始</li>
+                                    <li>• 社區建設啟動</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：Discord社區20,000人
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-pink-400 mb-2">11月份 - 技術開發</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• 智慧合約開發完成</li>
+                                    <li>• AI電影製作40%完成</li>
+                                    <li>• NFT生成系統測試</li>
+                                    <li>• 安全審計第一輪</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：代碼覆蓋率98%
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-pink-400 mb-2">12月份 - 預售準備</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• 營銷活動全面展開</li>
+                                    <li>• KOL合作夥伴確認</li>
+                                    <li>• 交易平台對接完成</li>
+                                    <li>• 法律合規檢查完成</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：預售註冊200,000人
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二階段：發行期 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i class="fas fa-star text-xs"></i>
+                    </div>
+                    <div class="roadmap-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-4">
+                                第二階段
+                            </div>
+                            <h3 class="text-xl font-bold">發行期（2026年1月-3月）</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="font-bold text-purple-400 mb-2">1月份 - NFT發行</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• 綾NFT限量發售</li>
+                                    <li>• Foundation平台獨家拍賣</li>
+                                    <li>• 成長主題NFT系列發售</li>
+                                    <li>• 生活場景NFT系列發售</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：綾NFT售罄&lt;8小時
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-purple-400 mb-2">2月份 - 功能啟動</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• 都市夢想合成系統上線</li>
+                                    <li>• 觀影通行證大規模發售</li>
+                                    <li>• DAO治理系統啟動</li>
+                                    <li>• AI互動功能開放</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：日活躍用戶12,000人
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-purple-400 mb-2">3月份 - 電影首映</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• AI電影製作完成</li>
+                                    <li>• NFT持有者專屬首映</li>
+                                    <li>• 全球媒體發布會</li>
+                                    <li>• 國際推廣啟動</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：首映參與者120,000人
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三階段：生態擴展期 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i class="fas fa-globe text-xs"></i>
+                    </div>
+                    <div class="roadmap-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-4">
+                                第三階段
+                            </div>
+                            <h3 class="text-xl font-bold">生態擴展期（2026年4月-12月）</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-bold text-blue-400 mb-2">4-6月 全球推廣</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• 多語言版本發布（8種語言）</li>
+                                    <li>• 國際電影節參展（30個）</li>
+                                    <li>• 全球KOL合作</li>
+                                    <li>• 跨文化在地化（12個地區）</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：全球用戶500,000人
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-blue-400 mb-2">7-12月 功能升級</h4>
+                                <ul class="text-sm text-gray-400 space-y-1">
+                                    <li>• VR觀影體驗上線</li>
+                                    <li>• 元宇宙整合（8個平台）</li>
+                                    <li>• 教育應用開發（120所學校）</li>
+                                    <li>• 續集項目DAO投票</li>
+                                </ul>
+                                <div class="mt-3 text-xs text-green-400">
+                                    目標：年度收益1.2億元
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 長期發展規劃 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i class="fas fa-crown text-xs"></i>
+                    </div>
+                    <div class="roadmap-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 py-1 rounded-full text-sm font-bold mr-4">
+                                長期願景
+                            </div>
+                            <h3 class="text-xl font-bold">長期發展規劃（2027-2030年）</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-pink-400 mb-2">2027年</div>
+                                <div class="text-sm text-gray-400">200萬用戶<br>生態總價值25億元</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-pink-400 mb-2">2028年</div>
+                                <div class="text-sm text-gray-400">800萬用戶<br>生態總價值65億元</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-pink-400 mb-2">2029年</div>
+                                <div class="text-sm text-gray-400">1,200萬用戶<br>生態總價值120億元</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-pink-400 mb-2">2030年</div>
+                                <div class="text-sm text-gray-400">2,000萬用戶<br>生態總價值200億元</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="py-16" id="collections">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">精選NFT收藏</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    探索《東京女子圖鑑》宇宙中最具代表性的角色與場景，收藏屬於您的數位文化資產。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 齋藤綾成長錄 -->
+                <div class="nft-card card rounded-xl overflow-hidden nft-item" data-id="14">
+                    <div class="relative">
+                        <div class="bg-gray-800 w-full h-60 flex items-center justify-center">
+                            <div class="text-gray-400 text-center">
+                                <i class="fas fa-user-graduate text-5xl mb-2 text-pink-400"></i>
+                                <div>齋藤綾成長錄</div>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">特別版</span>
+                        </div>
+                        <div class="nft-card-hover">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-bold">齋藤綾成長錄</h3>
+                                <span class="text-sm font-medium">限量版</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-gray-700 mr-2"></div>
+                                    <span class="text-sm">東京女子圖鑑宇宙</span>
+                                </div>
+                                <button class="btn-primary px-3 py-1 rounded-lg text-xs view-detail">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold">齋藤綾成長錄</h3>
+                            <div class="text-sm font-medium">¥3,999</div>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            展現主角從鄉下女孩到時尚品牌經理的完整成長歷程，AI動態呈現都市女性的蛻變之路。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 東京都市風情 -->
+                <div class="nft-card card rounded-xl overflow-hidden nft-item" data-id="15">
+                    <div class="relative">
+                        <div class="bg-gray-800 w-full h-60 flex items-center justify-center">
+                            <div class="text-gray-400 text-center">
+                                <i class="fas fa-city text-5xl mb-2 text-blue-400"></i>
+                                <div>東京都市風情</div>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">場景收藏</span>
+                        </div>
+                        <div class="nft-card-hover">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-bold">東京都市風情</h3>
+                                <span class="text-sm font-medium">珍藏版</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-gray-700 mr-2"></div>
+                                    <span class="text-sm">東京女子圖鑑宇宙</span>
+                                </div>
+                                <button class="btn-primary px-3 py-1 rounded-lg text-xs view-detail">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold">東京都市風情</h3>
+                            <div class="text-sm font-medium">¥1,299</div>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            重新詮釋東京各區域的獨特魅力，展現現代都市女性生活的豐富多彩。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 職場精英之路 -->
+                <div class="nft-card card rounded-xl overflow-hidden nft-item" data-id="16">
+                    <div class="relative">
+                        <div class="bg-gray-800 w-full h-60 flex items-center justify-center">
+                            <div class="text-gray-400 text-center">
+                                <i class="fas fa-briefcase text-5xl mb-2 text-amber-400"></i>
+                                <div>職場精英之路</div>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">職業系列</span>
+                        </div>
+                        <div class="nft-card-hover">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-bold">職場精英之路</h3>
+                                <span class="text-sm font-medium">職業藝術</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-gray-700 mr-2"></div>
+                                    <span class="text-sm">東京女子圖鑑宇宙</span>
+                                </div>
+                                <button class="btn-primary px-3 py-1 rounded-lg text-xs view-detail">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold">職場精英之路</h3>
+                            <div class="text-sm font-medium">¥899</div>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            AI重現現代職場環境，每個細節都展現都市女性的職業生涯發展軌跡。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 情感迷惘典藏 -->
+                <div class="nft-card card rounded-xl overflow-hidden nft-item" data-id="17">
+                    <div class="relative">
+                        <div class="bg-gray-800 w-full h-60 flex items-center justify-center">
+                            <div class="text-gray-400 text-center">
+                                <i class="fas fa-heart text-5xl mb-2 text-emerald-400"></i>
+                                <div>情感迷惘典藏</div>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3">
+                            <span class="token-badge">情感收藏</span>
+                        </div>
+                        <div class="nft-card-hover">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-bold">情感迷惘典藏</h3>
+                                <span class="text-sm font-medium">情感精品</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-gray-700 mr-2"></div>
+                                    <span class="text-sm">東京女子圖鑑宇宙</span>
+                                </div>
+                                <button class="btn-primary px-3 py-1 rounded-lg text-xs view-detail">
+                                    查看詳情
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold">情感迷惘典藏</h3>
+                            <div class="text-sm font-medium">¥699</div>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            收錄《東京女子圖鑑》中的經典情感場景，AI演繹，展現都市女性情感的永恆魅力。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#nft" class="btn-primary px-8 py-3 rounded-full font-medium">
+                    瀏覽全部NFT收藏
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="py-16 bg-gray-900" id="community">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-6">加入東京女子圖鑑AI宇宙社群</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    與全球都市女性文化愛好者、AI技術探索者和文化傳承者一起，共同見證都市女性文化的數位新生。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="card p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-4">獨特互動體驗</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="text-pink-400 mr-3 mt-1">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">AI角色對話系統</h4>
+                                    <p class="text-sm text-gray-400">
+                                        持有「成長主題」NFT的用戶，可與基於大語言模型訓練的、擁有完整人設和記憶的角色AI進行深度對話。
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="text-pink-400 mr-3 mt-1">
+                                    <i class="fas fa-vr-cardboard"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">角色視角觀影</h4>
+                                    <p class="text-sm text-gray-400">
+                                        持有者可選擇以該角色視角體驗電影，AI將生成專屬的內心獨白，提供沉浸式敘事體驗。
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="text-pink-400 mr-3 mt-1">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">角色社群准入</h4>
+                                    <p class="text-sm text-gray-400">
+                                        加入對應角色的專屬粉絲社群，與同好交流角色解讀與文化探討。
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex space-x-6 justify-center">
+                        <a href="#" class="text-3xl text-gray-400 hover:text-pink-400 transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-3xl text-gray-400 hover:text-pink-400 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-3xl text-gray-400 hover:text-pink-400 transition">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-3xl text-gray-400 hover:text-pink-400 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="card p-6">
+                        <div class="text-pink-400 text-4xl mb-4">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">教育與文化傳承</h3>
+                        <p class="text-gray-400">
+                            與全球孔子學院和大學合作，將NFT作為學習都市女性文化的沉浸式教具。
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="text-pink-400 text-4xl mb-4">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">元宇宙整合</h3>
+                        <p class="text-gray-400">
+                            構建持續擴展的「東京女子圖鑑元宇宙」，NFT持有者可在其中擁有虛擬身份、道具和土地。
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="text-pink-400 text-4xl mb-4">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">虛擬戲劇體驗</h3>
+                        <p class="text-gray-400">
+                            在元宇宙中參與經典場景重現，與角色互動，體驗現代都市社會的真實生活場景。
+                        </p>
+                    </div>
+                    
+                    <div class="card p-6">
+                        <div class="text-pink-400 text-4xl mb-4">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">創作工坊</h3>
+                        <p class="text-gray-400">
+                            參與AI創作工作坊，學習如何用現代技術重新詮釋都市女性文化。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-pink-900 to-red-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">加入AI電影革命</h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    訂閱我們的通訊，獲取獨家NFT發售資訊、收藏品搶先體驗，以及AI生成電影資產的前沿洞察。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                    <input type="email" placeholder="輸入您的電子郵件" class="bg-white bg-opacity-10 border border-gray-700 text-white rounded-full px-6 py-3 w-full focus:outline-none focus:ring-2 focus:ring-pink-400">
+                    <button class="btn-primary px-8 py-3 rounded-full font-medium">
+                        訂閱
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NFT Detail Modal -->
+    <div id="nft-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="nft-detail-container">
+                <div class="nft-detail-image">
+                    <div class="bg-gray-800 w-full h-full flex items-center justify-center">
+                        <div class="text-gray-400 text-center p-8">
+                            <i class="fas fa-crown text-7xl mb-4 text-pink-400"></i>
+                            <div class="text-2xl" id="modal-title">綾NFT</div>
+                            <div class="mt-4" id="modal-type">創始贊助人層級</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nft-detail-info">
+                    <h2 class="text-3xl font-bold mb-4" id="modal-name">綾NFT</h2>
+                    <div class="flex items-center mb-6">
+                        <span class="token-badge" id="modal-category">創始贊助人</span>
+                        <span class="ml-4 text-gray-400" id="modal-count">限量: 800枚</span>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-3">作品描述</h3>
+                        <p class="text-gray-400" id="modal-description">
+                            綾NFT是創始贊助人層級的頂級收藏品，每個都是動態生成的60-120秒視頻藝術品，
+                            融合現代都市美學與數位藝術。持有者可參與DAO核心治理，擁有NFT形象完整商業使用權，
+                            並在電影片頭獲得署名權。
+                        </p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-3">特色功能</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-start">
+                                <i class="fas fa-vote-yea text-pink-400 mt-1 mr-2"></i>
+                                <span>參與項目重大決策投票，包括續集製作、IP授權等</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-handshake text-pink-400 mt-1 mr-2"></i>
+                                <span>與主創團隊及文學顧問的私人交流會</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-tv text-pink-400 mt-1 mr-2"></i>
+                                <span>專屬虛擬觀影廳，可邀請最多20人同時觀看</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-palette text-pink-400 mt-1 mr-2"></i>
+                                <span>可要求AI生成個人專屬的《東京女子圖鑑》角色形象</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <div class="text-gray-400 text-sm">當前價格</div>
+                            <div class="text-2xl font-bold" id="modal-price">¥15,999</div>
+                        </div>
+                        <button class="btn-primary px-6 py-3 rounded-lg font-medium">
+                            立即收藏
+                        </button>
+                    </div>
+                    
+                    <div class="border-t border-gray-700 pt-4">
+                        <div class="text-gray-400 text-sm">區塊鏈</div>
+                        <div class="flex items-center">
+                            <i class="fab fa-ethereum text-gray-400 mr-2"></i>
+                            <span>以太坊主網 (ERC-721)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="golden-lotus-logo mb-4">
+                        <div class="logo-font">東京女子圖鑑</div>
+                        <div class="logo-sub">AI原生電影宇宙</div>
+                    </a>
+                    <p class="text-gray-400 mb-4">
+                        透過AI與區塊鏈技術，重塑都市女性成長故事。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-pink-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">平台</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-pink-400">關於項目</a></li>
+                        <li><a href="#global" class="text-gray-400 hover:text-pink-400">全球價值</a></li>
+                        <li><a href="#nft" class="text-gray-400 hover:text-pink-400">NFT系列</a></li>
+                        <li><a href="#technology" class="text-gray-400 hover:text-pink-400">AI技術</a></li>
+                        <li><a href="#collections" class="text-gray-400 hover:text-pink-400">精選收藏</a></li>
+                        <li><a href="#experience" class="text-gray-400 hover:text-pink-400">觀影體驗</a></li>
+                        <li><a href="#community" class="text-gray-400 hover:text-pink-400">社群</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">資源</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">項目白皮書</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">使用指南</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">常見問題</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">技術支援</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">文化背景</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">學術研究</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">法律聲明</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">服務條款</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">隱私政策</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">版權聲明</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">聯絡我們</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">免責聲明</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400">風險提示</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 《東京女子圖鑑》AI原生電影項目。保留所有權利。</p>
+                <p class="mt-2">本網站展示的NFT為數位收藏品，純屬文化藝術收藏用途。請謹慎收藏，了解相關風險。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add random data streams
+        function createDataStreams() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const stream = document.createElement('div');
+                    stream.className = 'data-stream';
+                    stream.style.left = Math.random() * 100 + '%';
+                    stream.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(stream);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        stream.remove();
+                    }, 4000);
+                }, i * 3000);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start data streams
+            createDataStreams();
+            setInterval(createDataStreams, 15000);
+            
+            // Add scroll animations
+            const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        if (entry.target.classList.contains('animate-slide-up')) {
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                        if (entry.target.classList.contains('animate-slide-right')) {
+                            entry.target.style.transform = 'translateX(0)';
+                        }
+                        if (entry.target.classList.contains('animate-fade-in')) {
+                            entry.target.style.transform = 'scale(1)';
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                if (el.classList.contains('animate-slide-up')) {
+                    el.style.transform = 'translateY(50px)';
+                }
+                if (el.classList.contains('animate-slide-right')) {
+                    el.style.transform = 'translateX(-50px)';
+                }
+                if (el.classList.contains('animate-fade-in')) {
+                    el.style.transform = 'scale(0.95)';
+                }
+                observer.observe(el);
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Filter functionality
+            const filterPills = document.querySelectorAll('.filter-pill');
+            const nftItems = document.querySelectorAll('.nft-item');
+            
+            filterPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    // Remove active class from all pills
+                    filterPills.forEach(p => p.classList.remove('active'));
+                    // Add active class to clicked pill
+                    pill.classList.add('active');
+                    
+                    const filter = pill.getAttribute('data-filter');
+                    
+                    nftItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // NFT detail modal functionality
+            const modal = document.getElementById('nft-modal');
+            const closeBtn = document.querySelector('.close-modal');
+            const viewDetailBtns = document.querySelectorAll('.view-detail');
+            
+            // NFT data
+            const nftData = {
+                1: {
+                    name: "綾NFT",
+                    type: "創始贊助人層級",
+                    category: "頂級收藏",
+                    count: "限量800枚",
+                    price: "¥15,999",
+                    description: "動態生成的60-120秒視頻藝術品，融合現代都市美學與數位藝術。持有者可參與DAO核心治理，擁有NFT形象完整商業使用權，並在電影片頭獲得署名權。"
+                },
+                2: {
+                    name: "初入都市 - 夢想啟航",
+                    type: "成長主題系列",
+                    category: "互動角色",
+                    count: "限量2,000枚",
+                    price: "¥12,999",
+                    description: "3D互動初入職場場景，展現青澀與勇敢。都市新人美學代表，希望與迷茫交織，具備獨特的AI互動功能。"
+                },
+                3: {
+                    name: "職場奮鬥 - 拼搏歲月",
+                    type: "成長主題系列",
+                    category: "互動角色",
+                    count: "限量2,000枚",
+                    price: "¥9,999",
+                    description: "工作場景動態展示，加班熬夜的真實表現，奮鬥精神主題表達。展現《東京女子圖鑑》中職場生活的深刻主題。"
+                },
+                4: {
+                    name: "愛情迷惘 - 情感歷程",
+                    type: "成長主題系列",
+                    category: "情感收藏",
+                    count: "限量2,000枚",
+                    price: "¥8,999",
+                    description: "戀愛場景3D展示技術，情感波動藝術還原，都市愛情的複雜表現。每個細節都展現現代女性情感的豐富層次。"
+                },
+                5: {
+                    name: "澀谷生活場景",
+                    type: "都市生活場景系列",
+                    category: "場景收藏",
+                    count: "限量5,000枚",
+                    price: "¥2,999",
+                    description: "東京最繁華地區的生活場景還原，展現都市女性的日常生活狀態。代表現代都市生活的活力與挑戰。"
+                },
+                6: {
+                    name: "時尚品牌經理",
+                    type: "職業NFT系列",
+                    category: "職業收藏",
+                    count: "限量3,000枚",
+                    price: "¥1,299",
+                    description: "展現都市女性的職業成就，時尚行業的精英形象，權力與地位的象徵。象徵現代女性的職場成功。"
+                },
+                7: {
+                    name: "都市夢想NFT",
+                    type: "合成系列",
+                    category: "獨特藝術",
+                    count: "理論上限45,000枚",
+                    price: "合成獲得",
+                    description: "由成長主題NFT + 生活場景NFT合成，每個都是獨一無二的30-60秒AI電影短片。通過合成機制減少總供應量，具有通縮價值。"
+                },
+                8: {
+                    name: "觀影通行證NFT",
+                    type: "大眾層級",
+                    category: "觀影通行證",
+                    count: "限量114,200枚",
+                    price: "¥99",
+                    description: "120分鐘AI電影一次性觀看權，消耗型NFT，使用即消耗。未來續集優先購買權，進入文化愛好者社群的入門級收藏。"
+                },
+                14: {
+                    name: "齋藤綾成長錄",
+                    type: "特別收藏版",
+                    category: "主角象徵",
+                    count: "限量1,000枚",
+                    price: "¥3,999",
+                    description: "展現主角從鄉下女孩到時尚品牌經理的完整成長歷程，AI動態呈現都市女性的蛻變之路。"
+                },
+                15: {
+                    name: "東京都市風情",
+                    type: "場景收藏版",
+                    category: "都市美學",
+                    count: "限量1,000枚",
+                    price: "¥1,299",
+                    description: "重新詮釋東京各區域的獨特魅力，展現現代都市女性生活的豐富多彩。"
+                },
+                16: {
+                    name: "職場精英之路",
+                    type: "職業系列",
+                    category: "職業藝術",
+                    count: "限量1,500枚",
+                    price: "¥899",
+                    description: "AI重現現代職場環境，每個細節都展現都市女性的職業生涯發展軌跡。"
+                },
+                17: {
+                    name: "情感迷惘典藏",
+                    type: "情感收藏",
+                    category: "情感藝術",
+                    count: "限量2,000枚",
+                    price: "¥699",
+                    description: "收錄《東京女子圖鑑》中的經典情感場景，AI演繹，展現都市女性情感的永恆魅力。"
+                }
+            };
+            
+            // Open modal
+            viewDetailBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const nftItem = btn.closest('.nft-item');
+                    const nftId = nftItem.getAttribute('data-id');
+                    const nft = nftData[nftId];
+                    
+                    if (nft) {
+                        // Populate modal data
+                        document.getElementById('modal-title').textContent = nft.name;
+                        document.getElementById('modal-name').textContent = nft.name;
+                        document.getElementById('modal-type').textContent = nft.type;
+                        document.getElementById('modal-category').textContent = nft.category;
+                        document.getElementById('modal-count').textContent = nft.count;
+                        document.getElementById('modal-price').textContent = nft.price;
+                        document.getElementById('modal-description').textContent = nft.description;
+                        
+                        // Show modal
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Close modal
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Login option handlers
+            const loginOptions = document.querySelectorAll('.login-option');
+            
+            loginOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const loginType = option.getAttribute('data-login');
+                    
+                    if (loginType === 'metamask' || loginType === 'walletconnect') {
+                        alert(`連接${loginType.charAt(0).toUpperCase() + loginType.slice(1)}錢包...`);
+                    } else {
+                        alert(`使用${loginType.charAt(0).toUpperCase() + loginType.slice(1)}登入...`);
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Email subscription
+            const emailInput = document.querySelector('input[type="email"]');
+            const subscribeBtn = document.querySelector('.btn-primary');
+            
+            if (emailInput && subscribeBtn) {
+                subscribeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = emailInput.value;
+                    if (email && email.includes('@')) {
+                        alert('感謝您的訂閱！我們將第一時間向您發送最新消息。');
+                        emailInput.value = '';
+                    } else {
+                        alert('請輸入有效的電子郵件地址。');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
